@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%/*= tr("My Routes") */%></title>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="stylesheet" href="/dist/css/main.css">
+</head>
+<body>
+  <div class="splash">
+    <div class="loader" data-page="loader-page">
+      <div class="loader-container">
+        <img src="/favicon.png">
+        <div class="loader-container-progress"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    window.state = <%- state %>;
+
+    const splashElem = document.querySelector('.splash');
+
+    splashElem?.classList.add('splash-open');
+  </script>
+  <%- content %>       
+  <script src="/dist/js/main.js" type="module"></script>
+</body>
+</html>

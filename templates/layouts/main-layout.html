@@ -1,0 +1,92 @@
+<% use crate::helpers::url::toggle_query_parameter; %> 
+<div data-layout="main-layout">
+  <header class="app-bar">
+    <div class="app-bar-row">      
+      <div class="app-bar-section app-bar-section-fill">
+        <div class="search">
+          <form method="post">          
+            <input 
+              type="text" 
+              name="search" 
+              class="search-input app-bar-title"
+              autocomplete="off"
+            >
+            <svg class="search-icon search-icon-left" viewBox="0 0 16 16">
+              <path 
+                fill-rule="evenodd" 
+                d="
+                  M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 
+                  4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z
+                "
+              />
+            </svg>
+            <svg class="search-icon search-icon-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
+              <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
+            </svg>
+          </form>    
+          <div class="search-list"></div>    
+        </div>
+      </div>
+      <div class="app-bar-section app-bar-section-align-start">
+        <a 
+          data-button="navigation"          
+          href="?<%= toggle_query_parameter(query, "main-layout-navigation") %>"
+        >
+          <svg class="app-bar-icon" viewBox="0 0 16 16">
+            <path 
+              fill-rule="evenodd" 
+              d="
+                M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 
+                .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 
+                0 1H3a.5.5 0 0 1-.5-.5z
+              "
+            />
+          </svg>          
+        </a>
+      </div>
+      <div class="app-bar-section app-bar-section-align-end">
+        <a 
+          data-button="search"
+          href="?<%= toggle_query_parameter(query, "main-layout-search") %>"
+        >
+          <svg class="app-bar-icon" viewBox="0 0 16 16">
+            <path 
+              d="
+                M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 
+                1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 
+                0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 
+                0 0 1-.5-.5z
+              "
+            />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+  <aside class="drawer drawer-hoverable <%= if navigation { "drawer-open" } else { "" } %>">
+    <div class="drawer-header">
+      <a 
+        data-button="header-navigation"
+        href="?<%= toggle_query_parameter(query, "main-layout-navigation") %>"
+        data-icon="header-navigation-icon"
+      >
+        <svg  
+          class="drawer-header-icon <%= if navigation { "" } else { "drawer-header-icon-hide" } %>" 
+          viewBox="0 0 16 16"
+          data-icon="header-navigation-icon"
+        >
+          <path 
+            d="
+              M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 
+              2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z
+            "
+          />
+        </svg>                       
+      </a>
+    </div>    
+  </aside>
+  <main id="main-content" class="main-content app-bar-fixed-adjust">
+    <%- content %>       
+  </main>
+</div>
